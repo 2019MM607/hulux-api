@@ -3,5 +3,5 @@ Api
 
 
 # instalation
-* git clone
+* git clone https://github.com/2019MM607/hulux-api.git
 * npm install

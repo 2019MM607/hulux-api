@@ -8,9 +8,10 @@ export const postData = async (req: Request, res: Response) => {
     
     const token: string = process.env.API_TOKEN || ''
     const { numero, nombre, template, cantidad, user, pass, fecha } = req.query
+    const complete_phone_number = `521${numero}`
 
     const queries = {
-        numero,
+        complete_phone_number,
         nombre,
         template,
         cantidad,
@@ -22,7 +23,7 @@ export const postData = async (req: Request, res: Response) => {
     
 
 
-    const response = await fetch(`${BASE_API_URL}/v1/message/sendContent/${numero}`, {
+    const response = await fetch(`${BASE_API_URL}/v1/message/sendContent/${complete_phone_number}`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -31,9 +32,9 @@ export const postData = async (req: Request, res: Response) => {
         body: JSON.stringify(payload)
     })
     const data = await response.json()
-    res.status(200).json({ ok: true, data })
-
-
+    data?.status != 'success' ? res.status(400).json({ ok: false, message: 'error' }) :  res.status(200).json({ ok: true, data })
+   
 }
+
 
 

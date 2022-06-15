@@ -9,6 +9,7 @@ export const validatePhoneNumber = async (req : Request, res : Response, next : 
     const {numero, nombre} = req.query
     const complete_phone_number = `521${numero}`
 
+    
 
     try {
         const response = await fetch(`https://app.okeybot.com/api/v1/contact/${complete_phone_number}`, {
@@ -45,7 +46,9 @@ export const validatePhoneNumber = async (req : Request, res : Response, next : 
                 body: JSON.stringify(payload)
             })
             const postContactResponse = await postContact.json()
+            console.log(postContactResponse)
         }
+        
         next()
         
     } catch (error) {

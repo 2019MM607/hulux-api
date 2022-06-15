@@ -7,9 +7,13 @@ const BASE_API_URL : string = process.env.API_URL || ''
 export const postData = async (req: Request, res: Response) => {
     
     const token: string = process.env.API_TOKEN || ''
+    
+    if (req.query.template == ' suspencion') {
+        req.query.template = 'suspencion'
+    }
+
     const { numero, nombre, template, cantidad, user, pass, fecha } = req.query
     const complete_phone_number = `521${numero}`
-
     const queries = {
         complete_phone_number,
         nombre,
@@ -32,7 +36,8 @@ export const postData = async (req: Request, res: Response) => {
         body: JSON.stringify(payload)
     })
     const data = await response.json()
-    data?.status != 'success' ? res.status(400).json({ ok: false, message: 'error' }) :  res.status(200).json({ ok: true, data })
+    data?.status != 'success' && res.status(400).json({ ok: false, data }) 
+      res.status(200).json({ ok: true, data })
    
 }
 

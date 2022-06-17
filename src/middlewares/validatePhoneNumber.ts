@@ -46,7 +46,7 @@ export const validatePhoneNumber = async (req : Request, res : Response, next : 
                 body: JSON.stringify(payload)
             })
             const postContactResponse = await postContact.json()
-            console.log(postContactResponse)
+            console.log('El usuario no existía, procedió a crearse', postContactResponse)
         }
         
         next()

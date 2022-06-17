@@ -36,8 +36,11 @@ export const postData = async (req: Request, res: Response) => {
         body: JSON.stringify(payload)
     })
     const data = await response.json()
-    data?.status != 'success' && res.status(400).json({ ok: false, data }) 
-      res.status(200).json({ ok: true, data })
+    data?.status != 'success' && res.status(400).json({ ok: false, data })
+
+    //mensaje en consola cuando el whatsapp no se envie
+    data?.status != 'success' && console.log(data)
+    res.status(200).json({ ok: true, data })
    
 }
 

@@ -50,7 +50,7 @@ export const getPhoneNumber =  (req: Request, res: Response) =>{
     console.log(req.headers)
     try {
         let result = number.substring(4, number.length)
-        res.status(200).json({ ok: true, status: 200, data : {number : result}})
+        res.status(200).json({ ok: true, data : {status: 'success', data : {number : result}}})
         
     } catch (error) {
         res.status(500).json({ok:false, msg: 'no se pudo convertir el numero'})

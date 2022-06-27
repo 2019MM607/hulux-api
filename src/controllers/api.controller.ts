@@ -47,6 +47,7 @@ export const postData = async (req: Request, res: Response) => {
 export const getPhoneNumber =  (req: Request, res: Response) =>{
 
     const {number} = req.params
+    console.log(req.headers)
     try {
         let result = number.substring(4, number.length)
         res.status(200).json({ ok: true, status: 200, data : {number : result}})

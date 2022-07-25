@@ -2,12 +2,14 @@
     "name": "hulux-api",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "src/index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
         "build": "tsc",
-        "start": "node index.js"
+        "start": "node dist/index.js",
+        "postinstall": "tsc"
+
     },
     "author": "",
     "license": "ISC",

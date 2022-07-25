@@ -1,6 +1,6 @@
 
 export interface IQueries {
-    numero?: string,
+    complete_phone_number?: string,
     nombre?: string,
     template?: string
     cantidad?: string
@@ -10,7 +10,7 @@ export interface IQueries {
 
 }
 
-export const getPayload = (data) => {
+export const getPayload = (data: any) => {
 
     const cantidad_pesos = `${data.cantidad}`
 

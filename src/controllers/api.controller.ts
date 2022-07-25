@@ -1,13 +1,13 @@
-import {json, Request, Response} from 'express'
+import { json, Request, Response } from 'express'
 import { getPayload } from '../helpers/getTemplatePayload'
 import fetch from 'node-fetch'
 
-const BASE_API_URL : string = process.env.API_URL || ''
+const BASE_API_URL: string = process.env.API_URL || ''
 
 export const postData = async (req: Request, res: Response) => {
-    
+
     const token: string = process.env.API_TOKEN || ''
-    
+
     if (req.query.template == ' suspencion') {
         req.query.template = 'suspencion'
     }
@@ -24,7 +24,7 @@ export const postData = async (req: Request, res: Response) => {
         fecha
     }
     const payload = getPayload(queries)
-    
+
 
 
     const response = await fetch(`${BASE_API_URL}/v1/message/sendContent/${complete_phone_number}`, {
@@ -41,19 +41,19 @@ export const postData = async (req: Request, res: Response) => {
     //mensaje en consola cuando el whatsapp no se envie
     data?.status != 'success' && console.log(data)
     res.status(200).json({ ok: true, data })
-   
+
 }
 
-export const getPhoneNumber =  (req: Request, res: Response) =>{
+export const getPhoneNumber = (req: Request, res: Response) => {
 
-    const {number} = req.params
+    const { number } = req.params
     console.log(req.headers)
     try {
         let result = number.substring(4, number.length)
-        res.status(200).json({ ok: true, data : {status: 'success', data : {number : result}}})
-        
+        res.status(200).json({ ok: true, data: { status: 'success', data: { number: result } } })
+
     } catch (error) {
-        res.status(500).json({ok:false, msg: 'no se pudo convertir el numero'})
+        res.status(500).json({ ok: false, msg: 'no se pudo convertir el numero' })
     }
 }
 

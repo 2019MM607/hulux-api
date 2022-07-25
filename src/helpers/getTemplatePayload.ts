@@ -1,16 +1,16 @@
 
 interface IQueries {
-    numero : string,
-    nombre : string,
-    template : string
-    cantidad : string
-    user : string
-    pass : string
-    fecha : string
+    numero?: string,
+    nombre?: string,
+    template?: string
+    cantidad?: string
+    user?: string
+    pass?: string
+    fecha?: string
 
 }
 
-export const getPayload = ( data  )  =>{
+export const getPayload = (data: IQueries) => {
 
     const cantidad_pesos = `${data.cantidad}`
 
@@ -19,38 +19,38 @@ export const getPayload = ( data  )  =>{
 
     if (data.template === 'noti_fact') {
         payload = {
-          body:[{
-            type: 'whatsapp_template',
-            template: {
-                name: data.template,
-                languageCode : 'es_MX',
-                components: [
-                    {
-                        type: 'body',
-                        text : `Estimado {{1}}, le recordamos que tiene un saldo pendiente por pagar por un total de {{2}} pesos
+            body: [{
+                type: 'whatsapp_template',
+                template: {
+                    name: data.template,
+                    languageCode: 'es_MX',
+                    components: [
+                        {
+                            type: 'body',
+                            text: `Estimado {{1}}, le recordamos que tiene un saldo pendiente por pagar por un total de {{2}} pesos
                                 evite suspensión de su servicio pagando antes del {{3}}.`,
-                        parameters : [
-                            {
-                                type: 'text',
-                                text: data.nombre
-                            },
-                            {
-                                type: 'text',
-                                text:cantidad_pesos
-                            },
-                            {
-                                type: 'text',
-                                text: data.fecha
-                            },
-                            
-                        ]
-                    }
-                ]
-            }
-          }]
-    }
+                            parameters: [
+                                {
+                                    type: 'text',
+                                    text: data.nombre
+                                },
+                                {
+                                    type: 'text',
+                                    text: cantidad_pesos
+                                },
+                                {
+                                    type: 'text',
+                                    text: data.fecha
+                                },
 
-    }else if (data.template === 'bienvenida'){
+                            ]
+                        }
+                    ]
+                }
+            }]
+        }
+
+    } else if (data.template === 'bienvenida') {
 
         payload = {
             body: [
@@ -82,8 +82,8 @@ export const getPayload = ( data  )  =>{
 
         }
 
-    }else if (data.template === 'noti_pago'){
-        
+    } else if (data.template === 'noti_pago') {
+
         payload = {
             body: [
                 {
@@ -105,19 +105,19 @@ export const getPayload = ( data  )  =>{
                                         type: 'text',
                                         text: cantidad_pesos
                                     }
-        
+
                                 ]
                             }
                         ]
-                }
+                    }
                 }
             ]
-    }
+        }
 
-    
-    
-    }else if (data.template === 'suspencion'){
-        
+
+
+    } else if (data.template === 'suspencion') {
+
         payload = {
             body: [
                 {
@@ -139,14 +139,14 @@ export const getPayload = ( data  )  =>{
                                         type: 'text',
                                         text: cantidad_pesos
                                     }
-        
+
                                 ]
                             }
                         ]
-                }
+                    }
                 }
             ]
-    }
+        }
     }
 
     return payload

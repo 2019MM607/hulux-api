@@ -90,16 +90,16 @@ export const getPayload = (data: any) => {
 
                     type: 'whatsapp_template',
                     template: {
-                        name: data.template,
+                        name: data?.template,
                         languageCode: 'es_MX',
                         components: [
                             {
                                 type: 'body',
-                                text: `Estimado usuario, hemos enviado una notificación de pago a {{1}} {{2}} pesos`,
+                                text: 'Estimado usuario, hemos enviado una notificación de pago a {{1}} {{2}} pesos',
                                 parameters: [
                                     {
                                         type: 'text',
-                                        text: data.nombre
+                                        text: data?.nombre
                                     },
                                     {
                                         type: 'text',

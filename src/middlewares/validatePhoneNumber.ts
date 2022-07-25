@@ -7,7 +7,7 @@ export const validatePhoneNumber = async (req: Request, res: Response, next: Nex
     const token: string = process.env.API_TOKEN || ''
 
     const { numero, nombre } = req.query
-    const complete_phone_number = `521${numero}`
+    const complete_phone_number = `+521${numero}`
 
 
 

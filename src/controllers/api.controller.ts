@@ -1,8 +1,9 @@
 import { json, Request, Response } from 'express'
-import { getPayload } from '../helpers/getTemplatePayload'
+import { getPayload, IQueries } from '../helpers/getTemplatePayload'
 import fetch from 'node-fetch'
 
 const BASE_API_URL: string = process.env.API_URL || ''
+
 
 export const postData = async (req: Request, res: Response) => {
 
@@ -23,7 +24,7 @@ export const postData = async (req: Request, res: Response) => {
         pass,
         fecha
     }
-    const payload = getPayload(queries)
+    const payload: IQueries = getPayload(queries)
 
 
 

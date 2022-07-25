@@ -1,5 +1,5 @@
 
-interface IQueries {
+export interface IQueries {
     numero?: string,
     nombre?: string,
     template?: string
@@ -10,7 +10,7 @@ interface IQueries {
 
 }
 
-export const getPayload = (data: IQueries) => {
+export const getPayload = (data) => {
 
     const cantidad_pesos = `${data.cantidad}`
 
